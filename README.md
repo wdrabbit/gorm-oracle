@@ -1,7 +1,7 @@
 # GORM Oracle driver
 
 ## Description
-GORM-ORA is a GORM driver that does not depend on the Oracle client, Based on [github.com/CengSin/oracle](https://github.com/CengSin/oracle)
+GORM-ORACLE is a GORM driver that does not depend on the Oracle client, Based on [github.com/CengSin/oracle](https://github.com/CengSin/oracle)
 , not thoroughly tested and not recommended for production use.
 
 项目集成go-ora驱动,无需安装oracle客户端。
@@ -19,7 +19,7 @@ go get github.com/wdrabbit/gorm-oracle
 ```go
 import (
     "gorm.io/gorm"
-    "oracle "github.com/wdrabbit/gorm-ora"
+    "oracle "github.com/wdrabbit/gorm-oracle"
     "log"
 )
 
