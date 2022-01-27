@@ -13,7 +13,7 @@ A pure golang development of Oracle driver, do not need to install Oracle client
 ## Quick Start
 ### how to install 
 ```bash
-go get github.com/wdrabbit/gorm-ora
+go get github.com/wdrabbit/gorm-oracle
 ```
 ### usage
 ```go
