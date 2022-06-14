@@ -132,7 +132,9 @@ func Create(db *gorm.DB) {
 								return funk.Contains(boundVars, field.Name)
 							}),
 							func(field *schema.Field) {
-								if err = field.Set(insertTo, stmt.Vars[boundVars[field.Name]].(sql.Out).Dest); err != nil {
+								//if err = field.Set(insertTo, stmt.Vars[boundVars[field.Name]].(sql.Out).Dest); err != nil {
+								//@daojixing
+								if err = field.Set(stmt.Context,insertTo, stmt.Vars[boundVars[field.Name]].(sql.Out).Dest); err != nil {
 									db.AddError(err)
 								}
 							},
