@@ -46,7 +46,7 @@ func (m Migrator) HasTable(value interface{}) bool {
 	var count int64
 
 	m.RunWithValue(value, func(stmt *gorm.Statement) error {
-		return m.DB.Raw("SELECT COUNT(*) FROM USER_TABLES WHERE TABLE_NAME = ?", stmt.Table).Row().Scan(&count)
+		return m.DB.Raw("SELECT COUNT(*) FROM USER_TABLES WHERE TABLE_NAME = ?", strings.ToUpper(stmt.Table)).Row().Scan(&count)
 	})
 
 	return count > 0
@@ -86,7 +86,7 @@ func (m Migrator) RenameTable(oldName, newName interface{}) (err error) {
 }
 
 func (m Migrator) AddColumn(value interface{}, field string) error {
-	if !m.HasColumn(value, field) {
+	if m.HasColumn(value, field) {
 		return nil
 	}
 
@@ -141,7 +141,7 @@ func (m Migrator) AlterColumn(value interface{}, field string) error {
 func (m Migrator) HasColumn(value interface{}, field string) bool {
 	var count int64
 	return m.RunWithValue(value, func(stmt *gorm.Statement) error {
-		return m.DB.Raw("SELECT COUNT(*) FROM USER_TAB_COLUMNS WHERE TABLE_NAME = ? AND COLUMN_NAME = ?", stmt.Table, field).Row().Scan(&count)
+		return m.DB.Raw("SELECT COUNT(*) FROM USER_TAB_COLUMNS WHERE TABLE_NAME = ? AND COLUMN_NAME = ?", strings.ToUpper(stmt.Table), strings.ToUpper(field)).Row().Scan(&count)
 	}) == nil && count > 0
 }
 
