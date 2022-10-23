@@ -1,3 +1,5 @@
+module github.com/Q191/gorm-oracle
+
 go 1.18
 
 require (
